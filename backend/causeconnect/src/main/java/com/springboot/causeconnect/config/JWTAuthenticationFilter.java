@@ -13,8 +13,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.spring.ecommerce.services.JWTService;
-import com.spring.ecommerce.services.UserService;
+import com.springboot.causeconnect.services.JWTService;
+import com.springboot.causeconnect.user.services.UserService;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
