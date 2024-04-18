@@ -67,17 +67,17 @@ public class AuthenticationServiceNgoImpl implements AuthenticationServiceNgo{
         ngo.setNgoBankProof(signUpRequestNgo.getNgoBankProof());
         ngo.setRole(Role.NGO);
 
-        // Set address for the user
+        // // Set address for the user
         Address address = signUpRequestNgo.getAddress();
         address.setNgo(ngo); // Set reference to user
 
-        ngo.getAddresses().add(address);
+        ngo.getAddressesNgo().add(address);
         
-        // Add address to user's list (optional)
+        // // Add address to user's list (optional)
 
         ngo = ngoRepository.save(ngo);
 
-        this.addressRepository.save(address);
+         this.addressRepository.save(address);
         return ngo;
 
         
@@ -85,9 +85,9 @@ public class AuthenticationServiceNgoImpl implements AuthenticationServiceNgo{
 
     public JwtAuthResponse signIn(SignInRequestNgo signInRequestNgo){
 
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(signInRequestNgo.getEmail(),signInRequestNgo.getPassword()));
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(signInRequestNgo.getNgoEmail(),signInRequestNgo.getNgoPassword()));
 
-        Ngo ngo  = this.ngoRepository.findByNgoEmail(signInRequestNgo.getEmail()).orElseThrow(()->new IllegalArgumentException("Invalid email or password"));
+        Ngo ngo  = this.ngoRepository.findByNgoEmail(signInRequestNgo.getNgoEmail()).orElseThrow(()->new IllegalArgumentException("Invalid email or password"));
         var jwtToken = jwtService.generateToken(ngo);
 
         var refreshjwtToken = jwtService.generateRefreshToken(new HashMap<>(),ngo);

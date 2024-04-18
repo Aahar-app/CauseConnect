@@ -6,6 +6,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,6 +22,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 @Data
+@JsonIgnoreProperties({"password", "ngoLogo", "ngoBanner"})
 @Entity
 @Table(name = "ngo")
 public class Ngo implements UserDetails{
@@ -29,7 +33,7 @@ public class Ngo implements UserDetails{
     private int ngoId;
 
     @NotNull
-     @Column(name = "ngoName")
+    @Column(name = "ngoName")
     private String ngoName;
 
     @NotNull
@@ -40,11 +44,6 @@ public class Ngo implements UserDetails{
     @Column(name = "ngoPassword")
     private String ngoPassword;
 
-    @NotNull
-    @Column(name = "addressId")
-    private int addressId;
-
-    
 
     @NotNull
     @Column(name = "ngoPhone")
@@ -58,16 +57,16 @@ public class Ngo implements UserDetails{
     @Column(name = "ngoDescription")
     private String ngoDescription;
 
-    @NotNull
+    //@NotNull
     @Column(name = "ngoLogo")
     private String ngoLogo;
 
-    @NotNull
+    //@NotNull
     @Column(name = "ngoBanner")
     private String ngoBanner;
 
 
-    @NotNull
+   // @NotNull
     @Column(name = "ngoType")
     private String ngoType;
 
@@ -77,48 +76,48 @@ public class Ngo implements UserDetails{
     @Column(name = "ngoSubCategory")
     private String ngoSubCategory;
 
-    @NotNull
+   // @NotNull
     @Column(name = "ngoRegistrationNumber")
     private String ngoRegistrationNumber;
 
-    @NotNull
+   // @NotNull
     @Column(name = "ngoRegistrationProof")
     private String ngoRegistrationProof;
 
-    @NotNull
+  //  @NotNull
     @Column(name = "ngoPanNumber")
     private String ngoPanNumber;
 
-    @NotNull
+  //  @NotNull
     @Column(name = "ngoPanProof")
     private String ngoPanProof;
 
-    @NotNull
+  //  @NotNull
     @Column(name = "ngoGstNumber")
     private String ngoGstNumber;
 
-    @NotNull
+   // @NotNull
     @Column(name = "ngoGstProof")
     private String ngoGstProof;
 
-    @NotNull
+   // @NotNull
     @Column(name = "ngoBankName")
     private String ngoBankName;
 
-    @NotNull
+   // @NotNull
     @Column(name = "ngoBankBranch")
     private String ngoBankBranch;
 
-    @NotNull
+   // @NotNull
     @Column(name = "ngoBankAccountNumber")
 
     private String ngoBankAccountNumber;
 
-    @NotNull
+   // @NotNull
     @Column(name = "ngoBankIfscCode")
     private String ngoBankIfscCode;
 
-    @NotNull
+   // @NotNull
     @Column(name = "ngoBankProof")
     private String ngoBankProof;
 
@@ -127,7 +126,8 @@ public class Ngo implements UserDetails{
 
     
     @OneToMany(mappedBy = "ngo") // mappedBy points to the field in Address referring to Ngo
-    private List<Address> addresses = new ArrayList<>();
+    //@JsonManagedReference
+    private List<Address> addressesNgo = new ArrayList<>();
     
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

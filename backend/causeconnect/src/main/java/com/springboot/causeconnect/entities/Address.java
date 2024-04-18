@@ -2,6 +2,7 @@ package com.springboot.causeconnect.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,6 +15,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
+@JsonIgnoreProperties({"user", "ngo"})
 @Entity
 @Table(name = "address")
 public class Address {
@@ -45,6 +47,7 @@ public class Address {
 
     @ManyToOne
     @JoinColumn(name = "ngo_id") // defines the foreign key referencing Ngo table
+   // @JsonBackReference
     private Ngo ngo;
 
 

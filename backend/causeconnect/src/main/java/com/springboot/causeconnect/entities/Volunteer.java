@@ -16,6 +16,9 @@ public class Volunteer {
     private int volunteerId;
 
     private String volunteerName;
+    private String volunteerEmail;
+    private String volunteerPassword;
+    private String volunteerPhone;
     
 
 }

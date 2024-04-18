@@ -17,7 +17,7 @@ import com.springboot.causeconnect.services.DonationService;
 import jakarta.validation.Valid;
 import java.util.List;
 
-@RequestMapping("/api/donationRequest")
+@RequestMapping("/api/donationrequest")
 public class DonationRequestController {
 
     //post the donation - user
@@ -26,14 +26,14 @@ public class DonationRequestController {
     DonationService donationService;
 
     @PostMapping("/user/donate")
-    public ResponseEntity<Object> donate(@Valid @RequestBody DonationRequestDto donationRequestDto , BindingResult bindingResult) {
+    public ResponseEntity<Object> donate( @RequestBody DonationRequestDto donationRequestDto) {
 
         DonationRequest donationRequest =null;
-        if(bindingResult.hasErrors()){
-            List<ObjectError> errors = bindingResult.getAllErrors();
+        // if(bindingResult.hasErrors()){
+        //     List<ObjectError> errors = bindingResult.getAllErrors();
            
-            return ResponseEntity.badRequest().body(errors);
-        }
+        //     return ResponseEntity.badRequest().body(errors);
+        // }
         try{
              donationRequest = donationService.addDonationRequest(donationRequestDto);
              return ResponseEntity.ok(donationRequest);
@@ -55,7 +55,8 @@ public class DonationRequestController {
 
     
 
-    int donationId = donationRequestDto.getDonationRequestId();
+    int donationId =1;
+    // donationRequestDto.getDonationRequestId();
 
     try{
         int status = donationService.acceptDonationRequest(donationId);
@@ -80,7 +81,8 @@ public class DonationRequestController {
 
     
 
-    int donationId = donationRequestDto.getDonationRequestId();
+    int donationId = 1;
+    //donationRequestDto.getDonationRequestId();
 
     try{
         int status = donationService.rejectDonationRequest(donationId);

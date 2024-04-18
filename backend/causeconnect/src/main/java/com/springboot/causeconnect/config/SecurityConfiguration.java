@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.springboot.causeconnect.user.services.UserService;
 import com.springboot.causeconnect.entities.Role;
+import com.springboot.causeconnect.ngo.services.NgoService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -32,10 +33,16 @@ import lombok.RequiredArgsConstructor;
 public class SecurityConfiguration {
 
     @Autowired
-    private JWTAuthenticationFilter jwtAuthenticationFilter;
+    private JWTAuthenticationFilterUser jwtAuthenticationFilterUser;
+
+    @Autowired
+    private JwtAuthenticationFilterNgo jwtAuthenticationFilterNgo;
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private NgoService ngoService;
 
 
     @Bean
@@ -43,13 +50,18 @@ public class SecurityConfiguration {
         http.csrf(AbstractHttpConfigurer::disable)
         .authorizeHttpRequests(request -> request.requestMatchers("/api/auth/**")
         .permitAll()
-        .requestMatchers("/api/admin").hasAnyAuthority(Role.NGO.name())
+        .requestMatchers("/api/donationrequest/user/**")
+        .permitAll()
+        .requestMatchers("/api/ngo").hasAnyAuthority(Role.NGO.name())
         .requestMatchers("/api/user").hasAnyAuthority(Role.USER.name())
-        .anyRequest().authenticated())
+        .anyRequest().authenticated()
+        
+        )
 
         .sessionManagement(manager-> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-        .authenticationProvider(authenticationProvider()).addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-
+       // .authenticationProvider(authenticationProviderNgo()).addFilterBefore(jwtAuthenticationFilterNgo, UsernamePasswordAuthenticationFilter.class);
+         .authenticationProvider(authenticationProviderUser()).addFilterBefore(jwtAuthenticationFilterUser, UsernamePasswordAuthenticationFilter.class);
+        
         return http.build();
 
 
@@ -60,13 +72,22 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public AuthenticationProvider authenticationProvider(){
-        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userService.userDetailsService());
-        authenticationProvider.setPasswordEncoder(passwordEncoder());
+    public AuthenticationProvider authenticationProviderUser(){
+        DaoAuthenticationProvider authenticationProviderUser = new DaoAuthenticationProvider();
+        authenticationProviderUser.setUserDetailsService(userService.userDetailsService());
+        authenticationProviderUser.setPasswordEncoder(passwordEncoder());
         
-        return authenticationProvider;
+        return authenticationProviderUser;
     }
+
+    // @Bean
+    // public AuthenticationProvider authenticationProviderNgo(){
+    //     DaoAuthenticationProvider authenticationProviderNgo = new DaoAuthenticationProvider();
+    //     authenticationProviderNgo.setUserDetailsService(ngoService.ngoDetailsService());
+    //     authenticationProviderNgo.setPasswordEncoder(passwordEncoder());
+        
+    //     return authenticationProviderNgo();
+    // }
 
     @Bean
     public PasswordEncoder passwordEncoder(){

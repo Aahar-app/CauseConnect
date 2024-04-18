@@ -10,8 +10,11 @@ import com.springboot.causeconnect.entities.DonationRequest;
 import com.springboot.causeconnect.services.DonationService;
 
 import lombok.RequiredArgsConstructor;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 import com.springboot.causeconnect.entities.Ngo;
+import com.springboot.causeconnect.entities.Role;
 import com.springboot.causeconnect.entities.Status;
 
 
@@ -34,16 +37,22 @@ public class DonationServiceImpl implements DonationService{
 
         // user id set karna hai vo divuu karegi
         //manual setup for now
-        donationRequest.setUserId(0);
+        donationRequest.setUserId(donationRequestDto.getUserId());
 
 
-        String ngoName = donationRequestDto.getNgoName();
+       // String ngoName = donationRequestDto.getNgoName();
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String formattedDate = formatter.format(date);
+
+        donationRequest.setRequestTime(formattedDate);
         donationRequest.setTitle(donationRequestDto.getTitle());
         donationRequest.setPickupTime(donationRequestDto.getPickupTime());
         donationRequest.setDescription(donationRequestDto.getDescription());
         donationRequest.setStatus(Status.SENT.toString());
-        Ngo ngo = this.ngoRepository.findByNgoName(ngoName);
-        donationRequest.setNgoId(ngo.getNgoId());
+      //  Ngo ngo = this.ngoRepository.findByNgoName(ngoName);
+        donationRequest.setNgoId(donationRequestDto.getNgoId());
+        
 
 
         return this.donationRequestRepository.save(donationRequest);

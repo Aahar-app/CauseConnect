@@ -34,13 +34,13 @@ public class DonationRequest {
     private String description;
 
     @NotNull
-    private Date requestTime;
+    private String requestTime;
 
     @NotNull
-    private Date pickupTime;
+    private String pickupTime;
 
-    @NotNull
-    private Date deliveryTime;
+    
+    private String deliveryTime;
 
     private String status;
 

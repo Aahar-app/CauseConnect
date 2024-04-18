@@ -5,8 +5,8 @@ import lombok.Data;
 @Data
 public class SignInRequestNgo {
     
-    private String email;
-    private String password;
+    private String ngoEmail;
+    private String ngoPassword;
 
 
 }

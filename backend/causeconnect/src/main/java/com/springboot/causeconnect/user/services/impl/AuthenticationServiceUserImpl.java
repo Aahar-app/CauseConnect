@@ -53,7 +53,7 @@ public class AuthenticationServiceUserImpl implements AuthenticationServiceUser{
         Address address = signUpRequestUser.getAddress();
         address.setUser(user); // Set reference to user
 
-        user.getAddresses().add(address);
+        user.getAddressesUser().add(address);
         
         // Add address to user's list (optional)
 

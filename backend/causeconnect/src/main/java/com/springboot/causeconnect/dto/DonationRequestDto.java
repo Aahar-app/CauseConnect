@@ -6,11 +6,11 @@ import lombok.Data;
 @Data
 public class DonationRequestDto {
 
-    private int DonationRequestId;
-    private String ngoName;
+    private int userId;
+    private int ngoId;
     private String title;
     private String description;
-    private Date pickupTime;
+    private String pickupTime;
 
 
 

@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
@@ -21,6 +22,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
+@JsonIgnoreProperties({"password"})
 @Entity
 @Table(name="user")
 public class User implements UserDetails{
@@ -54,7 +56,8 @@ public class User implements UserDetails{
 
    @OneToMany(mappedBy = "user") // mappedBy points to the field in Address referring to User
    @JsonManagedReference
-    private List<Address> addresses = new ArrayList<>();
+    private List<Address> addressesUser = new ArrayList<>();
+    
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));

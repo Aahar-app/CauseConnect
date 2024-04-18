@@ -12,7 +12,7 @@ import com.springboot.causeconnect.entities.Ngo;
 @Repository
 public interface NgoRepository extends JpaRepository<Ngo, Integer>{
 
-    public Ngo findByNgoEmailAndNgoPassword(String email, String password);
+    public Ngo findByNgoEmailAndNgoPassword(String ngoEmail, String ngoPassword);
 
     Optional<Ngo> findByNgoEmail(String username);
 
