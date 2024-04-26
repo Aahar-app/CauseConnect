@@ -45,10 +45,7 @@ public class Address {
     @JsonBackReference
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "ngo_id") // defines the foreign key referencing Ngo table
-   // @JsonBackReference
-    private Ngo ngo;
+
 
 
 

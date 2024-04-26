@@ -1,23 +1,23 @@
-package com.springboot.causeconnect.dao;
+// package com.springboot.causeconnect.dao;
 
-import java.util.Optional;
+// import java.util.Optional;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+// import org.springframework.data.jpa.repository.JpaRepository;
 
-import org.springframework.stereotype.Repository;
+// import org.springframework.stereotype.Repository;
 
-import com.springboot.causeconnect.entities.Role;
-import com.springboot.causeconnect.entities.Ngo;
+// import com.springboot.causeconnect.entities.Role;
+// import com.springboot.causeconnect.entities.Ngo;
 
-@Repository
-public interface NgoRepository extends JpaRepository<Ngo, Integer>{
+// @Repository
+// public interface NgoRepository extends JpaRepository<Ngo, Integer>{
 
-    public Ngo findByNgoEmailAndNgoPassword(String ngoEmail, String ngoPassword);
+//     public Ngo findByNgoEmailAndNgoPassword(String ngoEmail, String ngoPassword);
 
-    Optional<Ngo> findByNgoEmail(String username);
+//     Optional<Ngo> findByNgoEmail(String username);
 
-    Ngo findByNgoName(String ngoName);
+//     Ngo findByNgoName(String ngoName);
 
-    Ngo findByRole(Role role);
+//     Ngo findByRole(Role role);
 
-}
+// }

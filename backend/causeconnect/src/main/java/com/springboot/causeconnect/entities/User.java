@@ -32,29 +32,39 @@ public class User implements UserDetails{
     private int id;
 
     
-    @NotNull
     private String firstName;
 
-   
-    @NotNull
     private String lastName;
 
-    
     @NotNull
     private String email;
 
-    
     @NotNull
     private String password;
 
-    
     private int successfulDonation;
+
+    // ngo details
+    @Column(name = "ngoName")
+    private String ngoName;
+   
+    @Column(name = "ngoPhone")
+    private String ngoPhone;
+
+    
+    @Column(name = "ngoWebsite")
+    private String ngoWebsite;
+
+    
+    @Column(name = "ngoDescription")
+    private String ngoDescription;
+
 
 
     @Column(name="role")
     Role role;
 
-   @OneToMany(mappedBy = "user") // mappedBy points to the field in Address referring to User
+   @OneToMany(mappedBy = "user" ) // mappedBy points to the field in Address referring to User
    @JsonManagedReference
     private List<Address> addressesUser = new ArrayList<>();
     

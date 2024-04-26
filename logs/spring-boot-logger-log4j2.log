@@ -1,0 +1,5 @@
+2024-04-26 18:00:19,318 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.0.Final
+2024-04-26 18:00:19,451 INFO o.s.b.StartupInfoLogger [restartedMain] Starting CauseconnectApplication using Java 17.0.10 with PID 20368 (C:\Users\hp\Desktop\web_D\CauseConnect\backend\causeconnect\target\classes started by hp in C:\Users\hp\Desktop\web_D\CauseConnect)
+2024-04-26 18:00:19,464 INFO o.s.b.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2024-04-26 18:00:19,607 INFO o.s.b.l.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-04-26 18:00:19,610 INFO o.s.b.l.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'

@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.springboot.causeconnect.dto.RefreshTokenRequest;
-import com.springboot.causeconnect.ngo.dto.SignInRequestNgo;
+
 import com.springboot.causeconnect.ngo.dto.SignUpRequestNgo;
-import com.springboot.causeconnect.entities.Ngo;
+
+import com.springboot.causeconnect.entities.User;
 import com.springboot.causeconnect.ngo.services.AuthenticationServiceNgo;
 
 import jakarta.validation.Valid;
@@ -35,7 +35,7 @@ public class AuthControllerNgo {
     @CrossOrigin("*")
     @PostMapping("/signup")
     public ResponseEntity<Object> signup(@Valid @RequestBody SignUpRequestNgo signUpRequestNgo,BindingResult bindingResult){
-        Ngo ngo =null;
+        User ngo =null;
         if(bindingResult.hasErrors()){
             List<ObjectError> errors = bindingResult.getAllErrors();
            
@@ -51,33 +51,7 @@ public class AuthControllerNgo {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-        @CrossOrigin("*")
-       @PostMapping("/signin")
-       public ResponseEntity<Object> signin(@RequestBody SignInRequestNgo signInRequestNgo){
 
-        try{
-            var jwtAuthResponse = authenticationServiceNgo.signIn(signInRequestNgo);
-            return ResponseEntity.ok(jwtAuthResponse);
-        }
-        catch(Exception e){
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-       }
-    }
-
-    @CrossOrigin("*")
-     @PostMapping("/refresh")
-       public ResponseEntity<Object> refreshToken(@RequestBody RefreshTokenRequest refreshTokenRequest){
-
-        try{
-            var jwtAuthResponse = authenticationServiceNgo.refreshToken(refreshTokenRequest);
-            return ResponseEntity.ok(jwtAuthResponse);
-        }
-        catch(Exception e){
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-       }
-    }
 
     
 }

@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springboot.causeconnect.dao.DonationRequestRepository;
-import com.springboot.causeconnect.dao.NgoRepository;
 import com.springboot.causeconnect.dto.DonationRequestDto;
 import com.springboot.causeconnect.entities.DonationRequest;
 import com.springboot.causeconnect.services.DonationService;
@@ -13,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
-import com.springboot.causeconnect.entities.Ngo;
 import com.springboot.causeconnect.entities.Role;
 import com.springboot.causeconnect.entities.Status;
 
@@ -27,8 +25,7 @@ public class DonationServiceImpl implements DonationService{
     @Autowired
     DonationRequestRepository donationRequestRepository;
 
-    @Autowired
-    NgoRepository ngoRepository;
+
 
     public DonationRequest addDonationRequest(DonationRequestDto donationRequestDto){
 

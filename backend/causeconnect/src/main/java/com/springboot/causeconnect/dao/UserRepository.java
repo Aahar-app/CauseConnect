@@ -17,5 +17,9 @@ public interface UserRepository extends JpaRepository<User,Integer> {
     Optional<User> findByEmail(String username);
 
     User findByRole(Role role);
+    
+    User findByNgoName(String ngoName);
+
+    
 
 }
